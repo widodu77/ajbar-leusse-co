@@ -1,11 +1,12 @@
 import numpy as np
-from scipy import linalg
+from scipy.linalg import *
 from scipy.sparse import *
 
 class Matrix:
     def __init__(self,size,values ):
         self.size=size
         self.values=values
+    
     def matrix(self):
         a=np.array(self.values)
         b=a.reshape(self.size)
@@ -32,11 +33,24 @@ class Matrix:
         b=v1.matrix()
 
         return np.dot(a,b)
+    
     def matrix_matrixmult(self,m1):
         a=self.matrix()
         b=m1.matrix()
 
         return np.dot(a,b)
+    
+    # this is queston 1.3 (correct it if anything is wrong)
+    def eingenvalue(self):
+        w = self.matrix()
+        return eigvals(w)
+    
+    def svd(self): 
+        w = self.matrix()
+        U , S , VT = svd(w)
+        return U, S , VT
+    
+
 
 
 class DenseMatrix(Matrix):
@@ -60,6 +74,7 @@ class SparseMatrix(Matrix):
         a = self.matrix()
         return print(a)
     
+
 
 
 a = SparseMatrix((3, 3), ([1, 2, 3], [0, 1, 2], [0, 1, 2, 3]), "yes")
@@ -86,3 +101,5 @@ h = SparseMatrix((4, 2), ([9, 8, 7, 6], [0, 1, 0, 1], [0, 1, 2, 3, 4]), "yes")
 print(e.addition(g))
 print(e.soustraction(g))
 print(e.matrix_matrixmult(h))
+
+
