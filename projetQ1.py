@@ -103,3 +103,31 @@ print(e.soustraction(g))
 print(e.matrix_matrixmult(h))
 
 
+arr = ([0,0,0],
+       [0,5,6],
+       [7,8,0])
+
+#---------------
+
+def matrix_to_csr(arr):
+    data = []  
+    col_indices = []  
+    row_indices = [0]  
+    
+    for i in arr:
+        for col_index, value in enumerate(i):
+            if value != 0:
+                data.append(value)
+                col_indices.append(col_index)
+        row_indices.append(len(data)) 
+    
+    return data, col_indices, row_indices
+
+
+
+data, col_indices, row_ind = matrix_to_csr(arr)
+
+print(data)
+print(col_indices)
+print(row_ind)
+
