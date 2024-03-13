@@ -270,6 +270,42 @@ class SparseMatrix(Matrix):
                     break
     
         return m1
+    
+    def soustraction(self, m2):
+        m1 = self.to_csr_with_row_info()
+        m2 = m2.to_csr_with_row_info()
+        couplesm1 = []
+        couplesM2 = []
+        i = 0
+        indexM1 = []
+        indexM2 = []
+    
+        Rez = []
+        col_indices = []
+        row_info = []
+    
+        while i < len(m1[0]):
+            couplesm1.append([m1[1][i], m1[2][i]])
+            indexM1.append(i)
+            i += 1
+        
+        j = 0
+        while j < len(m2[0]):
+            couplesM2.append([m2[1][j], m2[2][j]])
+            indexM2.append(j)
+            j += 1
+    
+        for k in couplesm1:
+            for l in couplesM2:
+                if k[0] == l[0] and k[1] == l[1]:
+                    m1[0][indexM1[couplesm1.index(k)]] -= m2[0][indexM2[couplesM2.index(l)]]
+                    break
+    
+        return m1
+    
+    
+
+    
 
             
         
@@ -313,8 +349,3 @@ class SparseMatrix(Matrix):
         return max(r)
 
        
-
-
-
-arthur=Matrix((3,3),[[1,2,3],[4,5,6],[7,8,9]])
-print(arthur.solve([1,2,3]))
