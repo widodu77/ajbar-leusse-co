@@ -1,6 +1,7 @@
 import sys
 import projetQ1 
 import projetQ2 
+from projetQ5 import *
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -40,7 +41,10 @@ if  len(sys.argv) < 2:
     print("The number six is for the solving of a AX=b")
     print("The number seven the computing of the L1 norm")
     print("The number eight is for the computing of the L2 norm")
-    print("The number eight is for the computing of the Linfinite norm")
+    print("The number nine is for the computing of the Linfinite norm")
+    print('the ten is for the making of a binary matrix out of a randomly generated dense matrix')
+    print('the eleven is for the computing of the U, S, Vt of a binary matrix after the use of the SVD method')
+    print('the twelve is for the computing of the recommendations of movies based on randomly generated matrix, and given values such as liked movies and given movie index ')
 
 
     
@@ -75,14 +79,14 @@ elif  len(sys.argv) ==3 and   str(sys.argv[1])=="noLib":
 
     number = str(sys.argv[2])
 
-    if number == '1':#display
+    if number == '1':
         aa.display()
         sys.exit()
             
-    elif number == '2':#add
+    elif number == '2':
         print(aa.addition(bb))
         sys.exit()
-    elif number == '3':#sous
+    elif number == '3':
         print(aa.soustraction(bb))
         sys.exit()
     elif number == '4':
@@ -122,28 +126,44 @@ elif  len(sys.argv) ==4 and str(sys.argv[3])=="spars" and str(sys.argv[1])=="noL
     if number == '1' :
         dd.to_csr_with_row_info()
 
-    elif number == '2':#add
+    elif number == '2':
         print(dd.addition(ee))
         sys.exit()
     
-    elif number == '3':#add
+    elif number == '3':
         print(dd.soustraction(ee))
         sys.exit()
 
-    elif number == '4':#add
+    elif number == '4':
         print(dd.soustraction(ee))
         sys.exit()
     
-    elif number == '7':#add
+    elif number == '7':
         print(dd.L1norm())
         sys.exit()
     
-    elif number == '8':#add
+    elif number == '8':
         print(dd.forbeniusnorm())
         sys.exit()
 
-    elif number == '9':#add
+    elif number == '9':
         print(dd.linfnorm())
+        sys.exit()
+
+elif len(sys.argv) == 2 : 
+    number = str(sys.argv[2])
+    if number == "10": 
+        data_processing()
+        sys.exit()
+
+    elif number == '11':
+        DIMENSIONAL_REDUCTION()
+        sys.exit()
+
+elif len(sys.argv)==5:
+    number = str(sys.argv[2])
+    if number == '12':
+        recommend(sys.argv[2], sys.argv[3], sys.argv[4])
         sys.exit()
    
 

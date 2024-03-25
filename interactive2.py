@@ -1,6 +1,7 @@
 import sys
 import projetQ1 
 import projetQ2 
+from projetQ5 import *
 import numpy as np
 import time
 import matplotlib.pyplot as plt
@@ -12,7 +13,7 @@ from scipy.sparse import random,csr_matrix
 
 if  len(sys.argv) < 2:
     print("this is a message for the user, for you to test the correctness of the implemented functions there is a structure that you need to follow")
-    print("Each function will be assimiliated to a number, you will therefore need to type the nymber of the function you want to test ")
+    print("Each function will be assimiliated to a number, you will therefore need to type the number of the function you want to test ")
     print("Another important aspect is some function have been written using some libraries and some didn't")
     print("therefore the structure to follow is interactive.py lib (if you want to test the function with a library) number (for a normal matrix)")
     print("or interactive.py noLib number  ")
@@ -20,8 +21,9 @@ if  len(sys.argv) < 2:
     print("the number one is for the addition of two matrices ")
     print("the number two is for the soustraction of two matrices ")
     print("the number three is for the computing of the L1 norm  ")
-    print("the number three is for the computing of the L2 norm  ")
-    print("the number three is for the computing of the Linfinite norm  ")
+    print("the number four is for the computing of the L2 norm  ")
+    print("the number five is for the computing of the Linfinite norm  ")
+    print('the number six is for finding the differnet amount of time taken to compute the SVD method by scipy and numpy of the same randomly generated matrix, and the singular values of said matrices ')
     
     sys.exit()
 
@@ -299,6 +301,16 @@ elif len(sys.argv) ==3 and   str(sys.argv[1])=="noLib" :
         plt.show()
     
 
-    
+elif len(sys.argv) ==2:
+    number = str(sys.argv[2]) 
+    if number == '6':
+        np_vs_scipy_SVD()
+        sys.exit()
+
+
+
+
+
+
 
 

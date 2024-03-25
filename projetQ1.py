@@ -1,14 +1,17 @@
 import numpy as np
 import scipy
 from scipy import linalg
+from scipy import linalg
+from scipy.sparse.linalg import spsolve,eigs
 from scipy.sparse import *
 from scipy.sparse.linalg import spsolve
-from scipy.linalg import solve
+from scipy.linalg import *
 
 class Matrix:
     def __init__(self,size,values ):
         self.size=size
         self.values=values
+
     def matrix(self):
         a=np.array(self.values)
         b=a.reshape(self.size)
@@ -30,6 +33,27 @@ class Matrix:
 
          return np.subtract(a,b)
     
+    def to_binary(self): 
+        a = self.matrix()
+        mod = list(map(lambda row: [1 if element > 2 else 0 for element in row], a))
+        return mod
+    
+    def eigen(self): 
+        a = self.matrix()  
+        eigenvalues, eigenvectors = linalg.eigs(a)
+        return eigenvalues, eigenvectors
+    
+    def SVD_scipy(self): 
+        a = self.matrix()
+        U, S, Vt = svd(a)
+        return U, S, Vt
+    
+    def SVD_np(self):
+        a = self.matrix()
+        U, S, Vt = np.linalg.svd(a)
+        return U, S, Vt
+    
+
     def matrix_vector_mult(self,v1):
         a=self.matrix()
         b=v1.matrix()
