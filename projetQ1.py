@@ -1,7 +1,9 @@
 import numpy as np
+import scipy
 from scipy import linalg
 from scipy.sparse import *
 from scipy.sparse.linalg import spsolve
+from scipy.linalg import solve
 
 class Matrix:
     def __init__(self,size,values ):
@@ -41,7 +43,7 @@ class Matrix:
     
     def solve(self,b):
         a=self.matrix()
-        return linalg.solve(a,b)
+        return solve(a,b)
 
 
 class DenseMatrix(Matrix):
@@ -55,7 +57,7 @@ class SparseMatrix(Matrix):
         self.values = values  
         self.sparcity = sparcity in ["Yes", "Y", "yes", "y"]
 
-    def matrix(arr):
+    """def matrixx(arr):
         data = []  
         col_indices = []  
         row_indices = [0]  
@@ -67,15 +69,20 @@ class SparseMatrix(Matrix):
                     col_indices.append(col_index)
             row_indices.append(len(data)) 
     
-        return data, col_indices, row_indices
+        return data, col_indices, row_indices"""
+    
+    def matrixx(self):
+        a=self.matrix()
+        return csr_matrix(a)
 
-    def solve(self,b):
-        a=csr_matrix(self.values,shape=self.size)
-        return spsolve(a,b)
+
+
+    def ssolve(self, b):
+        a = self.matrixx()
+        return spsolve(a, b)
     
     
     def display(self):
-        a = self.matrix()
+        a = self.matrixx()
         return print(a)
-    
     

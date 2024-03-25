@@ -52,7 +52,7 @@ def vectorsous(v1, v2):
         r.append(v1[i] - v2[i])
     return r
 
-def gauss_jordan_red(m1, b):
+"""def gauss_jordan_red(m1, b):
     augmented_matrix = []
     for i in range(len(m1)):
         augmented_matrix.append(m1[i] + [b[i]])
@@ -73,7 +73,7 @@ def gauss_jordan_red(m1, b):
                 new_m1_i.append(c*el)
             augmented_matrix[l]=vectorsous(augmented_matrix[l],new_m1_i)
 
-    return augmented_matrix
+    return augmented_matrix"""
 
 
 class Matrix:
@@ -303,22 +303,10 @@ class SparseMatrix(Matrix):
     
         return m1
     
-    
-
-    
-
-            
-        
-
-
-        
-
-
-
     def forbeniusnorm(self):
         m1=self.to_csr_with_row_info()
         r=0
-        for i in range(m1[1]):
+        for i in m1[0]:
             r+=i**2
         return r**(1/2)
     
@@ -348,4 +336,4 @@ class SparseMatrix(Matrix):
             r.append(re)
         return max(r)
 
-       
+
